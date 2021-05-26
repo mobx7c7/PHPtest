@@ -3,8 +3,8 @@ namespace BuscadorCEP\Controllers;
 
 use BuscadorCEP\Controllers\Controller;
 use BuscadorCEP\Gateways\EnderecoGateway;
-use BuscadorCEP\System\Response;
 use BuscadorCEP\Helpers\ResponseHelper;
+use BuscadorCEP\System\Response;
 use Jarouche\ViaCEP\BuscaViaCEPXML;
 
 class EnderecoController extends Controller
@@ -27,8 +27,9 @@ class EnderecoController extends Controller
                 break;
         }
 
-        if($response)
+        if ($response) {
             $response->send();
+        }
     }
     private function read($cep)
     {
