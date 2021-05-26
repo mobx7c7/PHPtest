@@ -11,6 +11,10 @@ class ResponseHelper
     }
     public static function makeNotFound()
     {
-        return new Response(404, ['error' => 'Not found']);
+        return self::makeError(404, 'Not found');
+    }
+    public static function makeError($status, $message)
+    {
+        return new Response($status, ['error' => $message]);
     }
 }
