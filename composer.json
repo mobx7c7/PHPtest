@@ -1,0 +1,17 @@
+{
+    "name": "mobx7c7/phptest",
+    "description": "Buscador de CEP",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^5.2"
+    },
+    "authors": [{
+        "name": "Marcelo de Oliveira Bittencourt",
+        "email": "mcrmaxx@gmail.com"
+    }],
+    "autoload": {
+        "psr-4": {
+            "BuscadorCEP\\": "src/"
+        }
+    }
+}
