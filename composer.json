@@ -3,7 +3,8 @@
     "description": "Buscador de CEP",
     "type": "project",
     "require": {
-        "vlucas/phpdotenv": "^5.2"
+        "vlucas/phpdotenv": "^5.2",
+        "jarouche/viacep": "^1.2"
     },
     "authors": [{
         "name": "Marcelo de Oliveira Bittencourt",
