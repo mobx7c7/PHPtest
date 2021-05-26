@@ -40,4 +40,4 @@ $env['DB_NAME'] = getResponseSTDIN('Enter with a database name','phptest');
 
 writeEnvFile($env);
 
-echo 'File was created.';
+echo 'Done.';
