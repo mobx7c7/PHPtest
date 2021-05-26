@@ -5,7 +5,7 @@ use BuscadorCEP\System\Response;
 
 class ResponseHelper
 {
-    public static function makeInvalid()
+    public static function makeInvalidInput()
     {
         return new Response(422, ['error' => 'Invalid input']);
     }
