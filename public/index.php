@@ -103,7 +103,7 @@
         {
             return str ? str : '(nenhum)';
         }
-        function preencherCampos(props) {
+        function carregarPropsNosCampos(props) {
             document.getElementById('i_logradouro')
                 .value = props['logradouro'];
             document.getElementById('i_complemento')
@@ -177,7 +177,7 @@
                         case 200: // Ok
                             var props = extrairPropsDeXML(this.responseXML);
                             if(props.erro === undefined){
-                                preencherCampos(props);
+                                carregarPropsNosCampos(props);
                             }else{
                                 mostrarModalErro('Este CEP não existe');
                             }
