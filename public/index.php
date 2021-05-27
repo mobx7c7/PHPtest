@@ -162,7 +162,7 @@
         }
 
         function mostrarModalErro(mensagem, onHiddenCb) {
-            mostrarModal('Erro', mensagem, onHiddenCb);
+            mostrarModal('Ocorreu um erro', mensagem, onHiddenCb);
         }
 
         function mostrarModalAviso(mensagem, onHiddenCb) {
@@ -185,17 +185,14 @@
                             if (props.erro === undefined) {
                                 carregarPropsNosCampos(props);
                             } else {
-                                mostrarModalErro('Este CEP não existe');
+                                mostrarModalErro('CEP não existe');
                             }
                             break;
                         case 400: // Bad Request
-                            mostrarModalErro('Este CEP não está digitado corretamente');
-                            break;
-                        case 500: // Internal Error
-                            mostrarModalErro('Ocorreu um erro interno');
+                            mostrarModalErro('CEP está incompleto ou digitado incorretamente');
                             break;
                         default:
-                            mostrarModalErro('Ocorreu outra coisa com código ' + this.status);
+                            mostrarModalErro('Não foi possível efetuar a pesquisa no momento. Tente novamente mais tarde');
                             break;
                     }
                 }
