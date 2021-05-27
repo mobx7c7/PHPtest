@@ -177,24 +177,31 @@
                     desabilitarEntradas(true);
                 }
                 if (this.readyState == 4) { // Done
-                    desabilitarEntradas(false);
-                    console.log('Resposta da consulta: \n' + this.responseText);
+                    var erroMsg = '';
+                    
                     switch (this.status) {
                         case 200: // Ok
                             var props = extrairPropsDeXML(this.responseXML);
                             if (props.erro === undefined) {
                                 carregarPropsNosCampos(props);
                             } else {
-                                mostrarModalErro('CEP não existe');
+                                erroMsg = 'CEP não existe';
                             }
                             break;
                         case 400: // Bad Request
-                            mostrarModalErro('CEP está incompleto ou digitado incorretamente');
+                            erroMsg = 'CEP está incompleto ou digitado incorretamente';
                             break;
                         default:
-                            mostrarModalErro('Não foi possível efetuar a pesquisa no momento. Tente novamente mais tarde');
+                            erroMsg = 'Não foi possível efetuar a pesquisa no momento. Tente novamente mais tarde';
                             break;
                     }
+
+                    console.log('Resposta da consulta:');
+                    console.log(this.responseText);
+                    if (erroMsg !== '') {
+                        mostrarModalErro(erroMsg);
+                    }
+                    desabilitarEntradas(false);
                 }
             };
 
