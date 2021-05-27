@@ -44,17 +44,18 @@ class EnderecoController extends Controller
                 return new Response(200, $result[0]);
             }
 
+            $result = $this->buscarCEP($cepNumeros);
+
+            if (is_a($result, 'BuscadorCEP\System\Response')) {
+                return $result;
+            }
+
             try {
-                $dadosViaCEP = $this->buscarCEP($cepNumeros);
-                try {
-                    $gateway->insert($dadosViaCEP);
-                    //TODO: Non-recursive call
-                    return $this->read($cep);
-                } catch (\PDOException $e) {
-                    return ResponseHelper::makeError(500, $e->getMessage());
-                }
-            } catch (\Exception $e) {
-                return ResponseHelper::makeError(400, $e->getMessage()); // CEP Inválido
+                $gateway->insert($result);
+                //TODO: Non-recursive call
+                return $this->read($cep);
+            } catch (\PDOException $e) {
+                return ResponseHelper::makeError(500, $e->getMessage());
             }
         } catch (\PDOException $e) {
             return ResponseHelper::makeError(500, $e->getMessage());
@@ -62,7 +63,17 @@ class EnderecoController extends Controller
     }
     private function buscarCEP($cep)
     {
-        $busca = new BuscaViaCEPXML();
-        return $busca->retornaCEP($this->cep);
+        try {
+            $busca = new BuscaViaCEPXML();
+            $dados = $busca->retornaCEP($this->cep);
+            
+            if (isset($dados['erro'])) {
+                return new Response(200, $dados); // CEP Não existe
+            }
+
+            return $dados;
+        } catch (\Exception $e) {
+            return ResponseHelper::makeError(400, $e->getMessage()); // CEP Inválido
+        }
     }
 }
