@@ -58,7 +58,7 @@
                                     </div>
                                 </div>
                                 <div class=' col-lg-4'>
-                                    <div class='form-grou'>
+                                    <div class='form-group'>
                                         <label for='i_uf'>UF</label>
                                         <input class='form-control' type='text' id='i_uf' name='uf' readonly>
                                     </div>
