@@ -115,18 +115,19 @@
             document.getElementById('i_uf')
                 .value = props['uf'];
         }
-        function limparCampos()
+        function limparCampos(text = '')
         {
             document.getElementById('i_logradouro')
-                .value = '';
+                .value = text;
             document.getElementById('i_complemento')
-                .value = '';
+                .value = text;
             document.getElementById('i_bairro')
-                .value = '';
+                .value = text;
             document.getElementById('i_localidade')
-                .value = '';
+                .value = text;
             document.getElementById('i_uf')
-                .value = '';
+                .value = text;
+        }
         function desabilitarEntradas(valor)
         {
             document.getElementById('btn_buscar')
