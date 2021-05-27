@@ -157,17 +157,17 @@
                             if(props.erro === undefined){
                                 preencherCampos(props);
                             }else{
-                                mostrarModalErro('Ish... Este CEP não existe');
+                                mostrarModalErro('Este CEP não existe');
                             }
                             break;
                         case 400: // Bad Request
-                            mostrarModalErro('Ish... Este CEP não está digitado corretamente');
+                            mostrarModalErro('Este CEP não está digitado corretamente');
                             break;
                         case 500: // Internal Error
-                            mostrarModalErro('Ish... Ocorreu um erro interno');
+                            mostrarModalErro('Ocorreu um erro interno');
                             break;
                         default:
-                            mostrarModalErro('Ish... Ocorreu outra coisa com código ' + this.status);
+                            mostrarModalErro('Ocorreu outra coisa com código ' + this.status);
                             break;
                     }
                 }
