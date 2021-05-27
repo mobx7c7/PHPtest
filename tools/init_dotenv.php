@@ -1,5 +1,5 @@
 <?php
-const ENV_FILE = '../.env';
+require 'constants.php';
 
 function getResponseSTDIN($text, $default = '')
 {
@@ -22,6 +22,8 @@ function getResponseSTDIN($text, $default = '')
 
 function writeEnvFile($arr)
 {
+    echo 'Writing to '.ENV_FILE.PHP_EOL;
+
     $file = fopen(ENV_FILE,'w');
     foreach ($arr as $key => $val)
     {

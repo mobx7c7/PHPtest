@@ -1,9 +1,10 @@
 <?php
-require '../vendor/autoload.php';
+require 'constants.php';
+require __DIR__.'\..\vendor\autoload.php';
 
 use Dotenv\Dotenv;
 
-$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv::createImmutable(ENV_PATH);
 $dotenv->load();
 
 $dbhost = $_ENV['DB_HOST'];
