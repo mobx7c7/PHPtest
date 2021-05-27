@@ -39,30 +39,25 @@ class EnderecoController extends Controller
 
         try {
             $result = $gateway->find($cepNumeros);
+
             if (!empty($result)) {
-                return new Response(201, $result[0]);
-            } else if ($this->inserirCEP($cepNumeros)) {
-                return $this->read($cepNumeros);
-            } else {
-                return new Response(500);
+                return new Response(200, $result[0]);
+            }
+
+            try {
+                $dadosViaCEP = $this->buscarCEP($cepNumeros);
+                try {
+                    $gateway->insert($dadosViaCEP);
+                    //TODO: Non-recursive call
+                    return $this->read($cep);
+                } catch (\PDOException $e) {
+                    return ResponseHelper::makeError(500, $e->getMessage());
+                }
+            } catch (\Exception $e) {
+                return ResponseHelper::makeError(400, $e->getMessage()); // CEP Inválido
             }
         } catch (\PDOException $e) {
-            return ResponseHelper::makeError(400, $e->getMessage());
-        }
-    }
-    private function inserirCEP($cep)
-    {
-        try {
-            $dadosCEP = $this->buscarCEP($cep);
-            try {
-                $gateway = $this->getGateway();
-                return $gateway->insert($dadosCEP);
-            } catch (\PDOException $e) {
-                //if ($e->errorInfo[1] == 1062) { //Duplicate
-                return ResponseHelper::makeError(400, $e->getMessage());
-            }
-        } catch (\Exception $e) {
-            return ResponseHelper::makeError(400, $e->getMessage());
+            return ResponseHelper::makeError(500, $e->getMessage());
         }
     }
     private function buscarCEP($cep)
