@@ -1,25 +1,21 @@
 # PHPtest
 
-Teste de seleção para vaga PHP
-
-## Faça um fork desse projeto e siga as intruções a seguir utilizando esse projeto.
-
-Construir uma aplicação web para buscar endereço. Aplicação deve fazer uma chamada na API via cep : https://viacep.com.br/.
-Premissas:
-
-  ● Usar PHP 5.6 ou superior.
-  
-  ● Usar Bootstrap.
-  
-  ● JavaScript (Não usar framework).
-  
-  ● Retorno deve ser em xml.
-  
-  ● Salvar os dados em uma base e antes de uma nova consulta verificar se o cep já foi consultado, caso tenha sido, trazer    informação da base e não deve efetuar uma nova consulta.
-  
-  ● Tratar o erro. Dar um retorno amigável para usuário leigo.
-  
-  
-## PS: Valorizamos a criatividade no layout.
-
-Ao finalizar a programação publicar esse teste em seu github e nos encaminhar o link com as instruções de teste.
+## Instruções de inicialização
+- Abra uma janela de prompt de comando no local do projeto
+- Execute a instalação do composer no projeto
+    ```sh
+    composer install
+    ```
+- Execute o script inicializador do arquivo dotenv e digite os dados pedidos em cada pergunta que aparecer no console
+    ```sh
+    php tools/init_dotenv.php
+    ```
+- Execute o script inicializador da base de dados
+    ```sh
+    php tools/init_db.php
+    ```
+## Instruções de execução
+- Usando servidor embutido (no local do projeto)
+    ```sh
+    php -S 127.0.0.1:8000 -t public
+    ```
