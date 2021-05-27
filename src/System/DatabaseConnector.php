@@ -1,6 +1,8 @@
 <?php
 namespace BuscadorCEP\System;
 
+use BuscadorCEP\Helpers\ResponseHelper;
+
 class DatabaseConnector
 {
     private $pdo = null;
@@ -16,7 +18,8 @@ class DatabaseConnector
         try {
             $this->pdo = new \PDO("mysql:host=$host;port=$port;dbname=$name", $user, $pass);
         } catch (\PDOException $e) {
-            exit($e->getMessage());
+            ResponseHelper::makeError(500, $e->getMessage())->send();
+            exit();
         }
     }
 
