@@ -127,6 +127,12 @@
                 .value = '';
             document.getElementById('i_uf')
                 .value = '';
+        function desabilitarEntradas(valor)
+        {
+            document.getElementById('btn_buscar')
+                .disabled = valor;
+            document.getElementById('i_cep')
+                .readOnly = valor;
         }
         function extrairPropsDeXML(xml) {
             var data = {};
@@ -160,11 +166,11 @@
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (this.readyState == 1) { // open()
-                    e.disabled = true;
                     limparCampos();
+                    desabilitarEntradas(true);
                 }
                 if (this.readyState == 4) { // Done
-                    e.disabled = false;
+                    desabilitarEntradas(false);
                     console.log('Resposta da consulta: \n' + this.responseText);
                     switch (this.status) {
                         case 200: // Ok
