@@ -1,4 +1,4 @@
-<html lang='en'>
+<html lang='pt-br'>
 <head>
     <title>Buscador de CEP</title>
     <meta charset='utf-8'>
