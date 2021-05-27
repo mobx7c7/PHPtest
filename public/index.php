@@ -43,7 +43,7 @@
                                     <div class='input-group'>
                                         <input type='text' class='form-control' id='i_cep' name='i_cep' placeholder='Digite um CEP' onkeypress='aplicarMascaraCEP(this)' maxlength='9'>
                                         <div class='input-group-append'>
-                                            <button class='btn btn-block btn-primary' type='button' onclick='fazerPesquisa(this)'>Buscar</button>
+                                            <button class='btn btn-block btn-primary' type='button' id='btn_buscar' onclick='fazerPesquisa(this)'>Buscar</button>
                                         </div>
                                     </div>
                                 </div>
