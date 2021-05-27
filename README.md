@@ -21,7 +21,7 @@
         php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
         ```
 
-## Instruções
+## Instruções de inicalização e execução
 - Abra uma janela de prompt de comando 
 - **(Opcional)** Verifique se as aplicações estão presentes no ambiente
     ```
