@@ -41,7 +41,7 @@
                                 <div class='form-group col'>
                                     <label for='i_cep'>CEP</label>
                                     <div class='input-group'>
-                                        <input type='text' class='form-control' id='i_cep' name='i_cep' value='01001000' placeholder='Digite um CEP'>
+                                        <input type='text' class='form-control' id='i_cep' name='i_cep' placeholder='Digite um CEP'>
                                         <div class='input-group-append'>
                                             <button class='btn btn-block btn-primary' type='button' onclick='fazerPesquisa(this)'>Buscar</button>
                                         </div>
