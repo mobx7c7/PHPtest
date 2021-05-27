@@ -1,6 +1,6 @@
 <html lang='pt-br'>
 <head>
-    <title>Buscador de CEP</title>
+    <title>Buscador de Endereço</title>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -17,7 +17,7 @@
                     <form>
                         <div class='rounded-lg border shadow p-4'>
                             <h1 class='display-3 text-center py-5'>
-                                Buscador de CEP
+                                Buscador de Endereço
                             </h1>
                             <hr>
                             <div class='row'>
