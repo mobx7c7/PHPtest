@@ -18,7 +18,7 @@ class DatabaseConnector
         try {
             $this->pdo = new \PDO("mysql:host=$host;port=$port;dbname=$name", $user, $pass);
         } catch (\PDOException $e) {
-            ResponseHelper::makeError(500, $e->getMessage())->send();
+            ResponseHelper::makeError(500, 'Não foi possível abrir conexão com a base de dados')->send();
             exit();
         }
     }
