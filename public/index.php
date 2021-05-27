@@ -11,6 +11,23 @@
 </head>
 <body class='bg-light'>
     <div class='container-fluid'>
+        <div class='modal fade' id='modalMensagem' tabindex='-1' role='dialog' aria-labelledby='modalMensagemLabel' aria-hidden='true'>
+            <div class='modal-dialog' role='document'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h5 class='modal-title' id='exampleModalLabel'></h5>
+                        <button type='button' class='btn btn-primary close' data-dismiss='modal' aria-label='Close'>
+                            <span aria-hidden='true'>&times;</span>
+                        </button>
+                    </div>
+                    <div class='modal-body'>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-secondary' data-dismiss='modal'>OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class='container'>
             <div class='row h-100'>
                 <div class='col my-auto'>
@@ -107,10 +124,22 @@
             }
             return data;
         }
-        function mostrarModalAviso($mensagem)
+        function mostrarModal(titulo, mensagem, onHiddenCb)
         {
-            //TODO: Modal de aviso
-            alert($mensagem);
+            var modal = $('#modalMensagem');
+            modal.on('hidden.bs.modal', onHiddenCb);
+            modal.find('.modal-title').text(titulo);
+            modal.find('.modal-body').text(mensagem);
+            modal.modal('show');
+            modal.modal({backdrop: 'static', keyboard: false});
+        }
+        function mostrarModalErro(mensagem, onHiddenCb)
+        {
+            mostrarModal('Erro', mensagem, onHiddenCb);
+        }
+        function mostrarModalAviso(mensagem, onHiddenCb)
+        {
+            mostrarModal('Aviso', mensagem, onHiddenCb);
         }
         function fazerPesquisa(e) {
             var xhr = new XMLHttpRequest();
@@ -128,17 +157,17 @@
                             if(props.erro === undefined){
                                 preencherCampos(props);
                             }else{
-                                mostrarModalAviso('Ish... Este CEP não existe');
+                                mostrarModalErro('Ish... Este CEP não existe');
                             }
                             break;
                         case 400: // Bad Request
-                            mostrarModalAviso('Ish... Este CEP não está digitado corretamente');
+                            mostrarModalErro('Ish... Este CEP não está digitado corretamente');
                             break;
                         case 500: // Internal Error
-                            mostrarModalAviso('Ish... Ocorreu um erro interno');
+                            mostrarModalErro('Ish... Ocorreu um erro interno');
                             break;
                         default:
-                            mostrarModalAviso('Ish... Ocorreu outra coisa com código ' + this.status);
+                            mostrarModalErro('Ish... Ocorreu outra coisa com código ' + this.status);
                             break;
                     }
                 }
