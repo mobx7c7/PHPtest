@@ -95,14 +95,15 @@
             if (texto.substring(0, 1) != saida)
                 e.value += texto.substring(0, 1);
         }
-        function aplicarMascaraCEP(e)
-        {
+
+        function aplicarMascaraCEP(e) {
             aplicarMascara(e, '#####-###');
         }
-        function usarStringOuNenhum(str)
-        {
+
+        function usarStringOuNenhum(str) {
             return str ? str : '(nenhum)';
         }
+
         function carregarPropsNosCampos(props) {
             document.getElementById('i_logradouro')
                 .value = props['logradouro'];
@@ -115,8 +116,8 @@
             document.getElementById('i_uf')
                 .value = props['uf'];
         }
-        function limparCampos(text = '')
-        {
+
+        function limparCampos(text = '') {
             document.getElementById('i_logradouro')
                 .value = text;
             document.getElementById('i_complemento')
@@ -128,41 +129,46 @@
             document.getElementById('i_uf')
                 .value = text;
         }
-        function desabilitarEntradas(valor)
-        {
+
+        function desabilitarEntradas(valor) {
             document.getElementById('btn_buscar')
                 .disabled = valor;
             document.getElementById('i_cep')
                 .readOnly = valor;
         }
+
         function extrairPropsDeXML(xml) {
             var data = {};
             var nodes = xml.documentElement.children;
             for (i = 0; i < nodes.length; i++) {
                 var c = nodes[i];
-                if(c.nodeType === 1) { // Element
-                    data[c.nodeName] =  c.firstChild ? c.firstChild.nodeValue : '';
+                if (c.nodeType === 1) { // Element
+                    data[c.nodeName] = c.firstChild ? c.firstChild.nodeValue : '';
                 }
             }
             return data;
         }
-        function mostrarModal(titulo, mensagem, onHiddenCb)
-        {
+
+        function mostrarModal(titulo, mensagem, onHiddenCb) {
             var modal = $('#modalMensagem');
             modal.on('hidden.bs.modal', onHiddenCb);
             modal.find('.modal-title').text(titulo);
             modal.find('.modal-body').text(mensagem);
             modal.modal('show');
-            modal.modal({backdrop: 'static', keyboard: false});
+            modal.modal({
+                backdrop: 'static',
+                keyboard: false
+            });
         }
-        function mostrarModalErro(mensagem, onHiddenCb)
-        {
+
+        function mostrarModalErro(mensagem, onHiddenCb) {
             mostrarModal('Erro', mensagem, onHiddenCb);
         }
-        function mostrarModalAviso(mensagem, onHiddenCb)
-        {
+
+        function mostrarModalAviso(mensagem, onHiddenCb) {
             mostrarModal('Aviso', mensagem, onHiddenCb);
         }
+
         function fazerPesquisa(e) {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
@@ -176,9 +182,9 @@
                     switch (this.status) {
                         case 200: // Ok
                             var props = extrairPropsDeXML(this.responseXML);
-                            if(props.erro === undefined){
+                            if (props.erro === undefined) {
                                 carregarPropsNosCampos(props);
-                            }else{
+                            } else {
                                 mostrarModalErro('Este CEP não existe');
                             }
                             break;
@@ -197,9 +203,9 @@
 
             var elCampoCep = document.getElementById('i_cep');
 
-            if(elCampoCep.value === ''){
+            if (elCampoCep.value === '') {
                 mostrarModalAviso('Você precisa informar um CEP válido para prosseguir com a busca');
-            }else{
+            } else {
                 xhr.open('GET', 'api/buscar.php?cep=' + elCampoCep.value, true);
                 xhr.send();
             }
