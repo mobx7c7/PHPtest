@@ -24,7 +24,7 @@
         <label for='i_uf'>Uf:</label><br>
         <input type='text' id='i_uf' name='uf' readonly><br>
         <br>
-        <input type="submit" value="Testar" onclick="fazerPesquisa(this)">
+        <input type="submit" value="Buscar" onclick="fazerPesquisa(this)">
     </form>
     <script>
         function preencherCampos(props) {
