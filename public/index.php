@@ -83,6 +83,19 @@
             document.getElementById('i_uf')
                 .value = props['uf'];
         }
+        function limparCampos()
+        {
+            document.getElementById('i_logradouro')
+                .value = '';
+            document.getElementById('i_complemento')
+                .value = '';
+            document.getElementById('i_bairro')
+                .value = '';
+            document.getElementById('i_localidade')
+                .value = '';
+            document.getElementById('i_uf')
+                .value = '';
+        }
         function extrairPropsDeXML(xml) {
             var data = {};
             var nodes = xml.documentElement.children;
@@ -94,39 +107,51 @@
             }
             return data;
         }
+        function mostrarModalAviso($mensagem)
+        {
+            //TODO: Modal de aviso
+            alert($mensagem);
+        }
         function fazerPesquisa(e) {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (this.readyState == 1) { // open()
                     e.disabled = true;
+                    limparCampos();
                 }
                 if (this.readyState == 4) { // Done
                     e.disabled = false;
                     console.log('Resposta da consulta: \n' + this.responseText);
                     switch (this.status) {
                         case 200: // Ok
-                            preencherCampos(extrairPropsDeXML(this.responseXML));
+                            var props = extrairPropsDeXML(this.responseXML);
+                            if(props.erro === undefined){
+                                preencherCampos(props);
+                            }else{
+                                mostrarModalAviso('Ish... Este CEP não existe');
+                            }
                             break;
                         case 400: // Bad Request
-                            alert('Ish... este CEP não existe');
+                            mostrarModalAviso('Ish... Este CEP não está digitado corretamente');
                             break;
                         case 500: // Internal Error
-                            alert('Ish... ocorreu um erro interno');
+                            mostrarModalAviso('Ish... Ocorreu um erro interno');
                             break;
                         default:
-                            alert('Ish... ocorreu outra coisa com código ' + this.status);
+                            mostrarModalAviso('Ish... Ocorreu outra coisa com código ' + this.status);
                             break;
                     }
                 }
             };
-            
-            var elCampoCep = document.getElementById('i_cep');
-            
-            //Nota: Ocorre erro de CORS
-            //xhr.open('GET', 'https://viacep.com.br/ws/'+elCampoCep.value+'/xml', true);
 
-            xhr.open('GET', 'api/buscar.php?cep=' + elCampoCep.value, true);
-            xhr.send();
+            var elCampoCep = document.getElementById('i_cep');
+
+            if(elCampoCep.value === ''){
+                mostrarModalAviso('Você precisa informar um CEP válido para prosseguir com a busca');
+            }else{
+                xhr.open('GET', 'api/buscar.php?cep=' + elCampoCep.value, true);
+                xhr.send();
+            }
         }
     </script>
 </body>
