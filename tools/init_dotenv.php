@@ -1,5 +1,5 @@
 <?php
-const ENV_FILE = '.env';
+const ENV_FILE = '../.env';
 
 function getResponseSTDIN($text, $default = '')
 {
