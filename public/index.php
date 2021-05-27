@@ -41,7 +41,7 @@
                                 <div class='form-group col'>
                                     <label for='i_cep'>CEP</label>
                                     <div class='input-group'>
-                                        <input type='text' class='form-control' id='i_cep' name='i_cep' placeholder='Digite um CEP'>
+                                        <input type='text' class='form-control' id='i_cep' name='i_cep' placeholder='Digite um CEP' onkeypress='aplicarMascaraCEP(this)'>
                                         <div class='input-group-append'>
                                             <button class='btn btn-block btn-primary' type='button' onclick='fazerPesquisa(this)'>Buscar</button>
                                         </div>
@@ -88,6 +88,17 @@
         </div>
     </div>
     <script>
+        function aplicarMascara(e, formato) {
+            var i = e.value.length;
+            var saida = formato.substring(1, 0);
+            var texto = formato.substring(i)
+            if (texto.substring(0, 1) != saida)
+                e.value += texto.substring(0, 1);
+        }
+        function aplicarMascaraCEP(e)
+        {
+            aplicarMascara(e, '#####-###');
+        }
         function preencherCampos(props) {
             document.getElementById('i_logradouro')
                 .value = props['logradouro'];
