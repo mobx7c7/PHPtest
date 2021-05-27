@@ -99,11 +99,15 @@
         {
             aplicarMascara(e, '#####-###');
         }
+        function usarStringOuNenhum(str)
+        {
+            return str ? str : '(nenhum)';
+        }
         function preencherCampos(props) {
             document.getElementById('i_logradouro')
                 .value = props['logradouro'];
             document.getElementById('i_complemento')
-                .value = props['complemento'];
+                .value = usarStringOuNenhum(props['complemento']);
             document.getElementById('i_bairro')
                 .value = props['bairro'];
             document.getElementById('i_localidade')
