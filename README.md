@@ -22,8 +22,11 @@
         ```
 
 ## Instruções de inicalização e execução
-- Abra uma janela de prompt de comando 
-- **(Opcional)** Verifique se as aplicações estão presentes no ambiente
+- Abra o _painel de controle do XAMPP_ e certifique:
+    - Módulo _MySQL_ deve estar ativo.
+    - Não é necessário módulo _Apache_ estar ativo.
+- Abra uma janela do prompt de comando 
+- **(Opcional)** Certifique se as aplicações estão presentes no ambiente
     ```
     git --version
     php --version
