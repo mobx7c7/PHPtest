@@ -43,7 +43,9 @@
                                     <div class='input-group'>
                                         <input type='text' class='form-control' id='i_cep' name='i_cep' placeholder='Digite um CEP' onkeypress='aplicarMascaraCEP(this)' maxlength='9'>
                                         <div class='input-group-append'>
-                                            <button class='btn btn-block btn-primary' type='button' id='btn_buscar' onclick='fazerPesquisa(this)'>Buscar</button>
+                                            <button class='btn btn-primary ' type='button' id='btn_buscar' onclick='fazerPesquisa(this)'>
+                                                Pesquisar
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -131,10 +133,18 @@
         }
 
         function desabilitarEntradas(valor) {
-            document.getElementById('btn_buscar')
-                .disabled = valor;
+            var botao_buscar = document.getElementById('btn_buscar');
+            
+            botao_buscar.disabled = valor;
+            
             document.getElementById('i_cep')
                 .readOnly = valor;
+
+            if(valor === true){
+                botao_buscar.innerText = 'Carregando...';
+            }else{
+                botao_buscar.innerText = 'Pesquisar';
+            }
         }
 
         function extrairPropsDeXML(xml) {
