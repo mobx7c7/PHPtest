@@ -21,7 +21,7 @@
         php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
         ```
 
-## Instruções de inicalização e execução
+## Instruções de inicialização e execução
 - Abra o _painel de controle do XAMPP_ e certifique:
     - Módulo _MySQL_ deve estar ativo.
     - Não é necessário módulo _Apache_ estar ativo.
